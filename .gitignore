@@ -1,0 +1,9 @@
+plan
+terraform.tfstate
+terraform.tfstate.backup
+.terraform
+
+# Ignore all files in out
+out/*
+# but keep the folder
+!out/.gitkeep

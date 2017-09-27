@@ -1,0 +1,18 @@
+{
+    "CN": "ODN",
+    "hosts": [
+    ],
+    "key": {
+        "algo": "rsa",
+        "size": 2048
+    },
+    "names": [
+        {
+            "C": "US",
+            "ST": "New York",
+            "L": "New York City",
+            "O": "ODN",
+            "OU": "ODN"
+        }
+    ]
+}
