@@ -60,3 +60,7 @@ A lot of the variables are defined in provider.tf with defaults. I'll try to kee
 ## ToDo some day
 
 I'd love to have my tfstate backed up somewhere secure and redundant. Maybe access it via a web service or stick it in a vault.
+
+## Thanks
+
+Big thanks to [kube-digital-terraform](https://github.com/kubernetes-digitalocean-terraform/kubernetes-digitalocean-terraform) for the inspiration behind the cfssl code.
