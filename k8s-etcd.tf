@@ -24,7 +24,7 @@ EOF
   # Generate server certificate
   provisioner "local-exec" {
     command = <<EOF
-      ${path.module}/gen_server_cert.sh k8s_etcd ${digitalocean_droplet.k8s_etcd.ipv4_address_private}
+      ${path.module}/gen_server_cert.sh k8s-etcd ${digitalocean_droplet.k8s_etcd.ipv4_address_private}
 EOF
   }
 
@@ -35,12 +35,12 @@ EOF
   }
 
   provisioner "file" {
-    source = "${path.module}/out/k8s_etcd.pem"
+    source = "${path.module}/out/k8s-etcd.pem"
     destination = "/home/core/k8s.pem"
   }
 
   provisioner "file" {
-    source = "${path.module}/out/k8s_etcd-key.pem"
+    source = "${path.module}/out/k8s-etcd-key.pem"
     destination = "/home/core/k8s-key.pem"
   }
 
