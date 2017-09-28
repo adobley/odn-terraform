@@ -16,7 +16,7 @@ resource "digitalocean_droplet" "k8s_worker" {
   size = "${var.size_worker}"
   user_data = "${data.template_file.worker_config.rendered}"
   private_networking = true
-  ssh_keys = ["${split(",", var.ssh_fingerprint)}"]
+  ssh_keys = [ "${var.ssh_fingerprint}" ]
 
   connection {
     user = "core"
