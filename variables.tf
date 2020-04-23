@@ -1,6 +1,6 @@
 variable "do_token" {}
 variable "do_region" {
-    default = "nyc3"
+    default = "sfo2"
 }
 variable "public_key" {}
 variable "private_key" {}
