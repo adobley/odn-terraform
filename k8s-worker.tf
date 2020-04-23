@@ -1,6 +1,6 @@
 data "template_file" "worker_config" {
   template = "${file("${path.module}/template/worker.yml")}"
-  vars {
+  vars = {
     DNS_SERVICE_IP = "10.3.0.10"
     ETCD_IP = "${digitalocean_droplet.k8s_etcd.ipv4_address_private}"
     MASTER_HOST = "${digitalocean_droplet.k8s_master.ipv4_address_private}"

@@ -1,6 +1,6 @@
 data "template_file" "master_config" {
   template = "${file("${path.module}/template/master.yml")}"
-  vars {
+  vars = {
     DNS_SERVICE_IP = "10.3.0.10"
     ETCD_IP = "${digitalocean_droplet.k8s_etcd.ipv4_address_private}"
     POD_NETWORK = "10.2.0.0/16"
