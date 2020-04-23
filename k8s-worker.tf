@@ -10,18 +10,19 @@ data "template_file" "worker_config" {
 
 resource "digitalocean_droplet" "k8s_worker" {
   image = "coreos-stable"
-  count = "${var.num_workers}"
+  count = var.num_workers
   name = "${var.prefix}${format("-k8s-worker-%02d", count.index + 1)}"
-  region = "${var.do_region}"
-  size = "${var.size_worker}"
-  user_data = "${data.template_file.worker_config.rendered}"
+  region = var.do_region
+  size = var.size_worker
+  user_data = data.template_file.worker_config.rendered
   private_networking = true
   ssh_keys = [ "${var.ssh_fingerprint}" ]
 
   connection {
     user = "core"
     type = "ssh"
-    private_key = "${file("${var.private_key}")}"
+    host = self.ipv4_address
+    private_key = file(var.private_key)
     timeout = "2m"
   }
 

@@ -12,16 +12,17 @@ data "template_file" "master_config" {
 resource "digitalocean_droplet" "k8s_master" {
   image = "coreos-stable"
   name = "${var.prefix}-k8s-master"
-  region = "${var.do_region}"
-  size = "${var.size_master}"
-  user_data = "${data.template_file.master_config.rendered}"
+  region = var.do_region
+  size = var.size_master
+  user_data = data.template_file.master_config.rendered
   private_networking = true
   ssh_keys = [ "${var.ssh_fingerprint}" ]
 
   connection {
     user = "core"
     type = "ssh"
-    private_key = "${file("${var.private_key}")}"
+    host = self.ipv4_address
+    private_key = file(var.private_key)
     timeout = "2m"
   }
 
@@ -67,7 +68,7 @@ EOF
   }
 
   provisioner "file" {
-    source = "${var.private_key}"
+    source = var.private_key
     destination = "/home/core/.ssh/id_rsa"
   }
 

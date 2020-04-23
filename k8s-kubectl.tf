@@ -1,5 +1,5 @@
 resource "null_resource" "setup_kubectl" {
-  depends_on = ["null_resource.gen_admin"]
+  depends_on = [null_resource.gen_admin]
   provisioner "local-exec" {
     command = <<EOF
       echo export MASTER_HOST=${digitalocean_droplet.k8s_master.ipv4_address} > $PWD/out/setup_kubectl.sh

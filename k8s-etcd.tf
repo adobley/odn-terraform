@@ -1,16 +1,17 @@
 resource "digitalocean_droplet" "k8s_etcd" {
   image = "coreos-stable"
   name = "${var.prefix}-k8s-etcd"
-  region = "${var.do_region}"
-  size = "${var.size_etcd}"
-  user_data = "${file("${path.module}/config/etcd.yaml")}"
+  region = var.do_region
+  size = var.size_etcd
+  user_data = file("${path.module}/config/etcd.yaml")
   private_networking = true
   ssh_keys = [ "${var.ssh_fingerprint}" ]
 
   connection {
     user = "core"
     type = "ssh"
-    private_key = "${file("${var.private_key}")}"
+    host = self.ipv4_address
+    private_key = file(var.private_key)
     timeout = "2m"
   }
 
