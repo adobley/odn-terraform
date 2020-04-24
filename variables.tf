@@ -5,6 +5,7 @@ variable "do_region" {
 variable "public_key" {}
 variable "private_key" {}
 variable "ssh_fingerprint" {}
+variable "image_id" {}
 
 variable num_workers {
     default = 3

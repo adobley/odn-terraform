@@ -10,7 +10,7 @@ data "template_file" "master_config" {
 }
 
 resource "digitalocean_droplet" "k8s_master" {
-  image = "coreos-stable"
+  image = var.image_id
   name = "${var.prefix}-k8s-master"
   region = var.do_region
   size = var.size_master

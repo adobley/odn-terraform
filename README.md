@@ -20,6 +20,9 @@ Revision: dev
 Runtime: go1.9
 ```
 
+* [Upload flatcar image to DigitalOcean](https://docs.flatcar-linux.org/os/booting-on-digitalocean/) I used the stable channel and named it `var.image_id`
+NOTE: DigitalOcean did not assign a slug for my image. I had to use their API to [list my private images](https://developers.digitalocean.com/documentation/v2/#list-a-user-s-images) and get the ID.
+
 ## Usage
 
 I exported my ssh fingerprint to SSH_FINGERPRINT for ease of use.
@@ -44,6 +47,7 @@ A lot of the variables are defined in provider.tf with defaults. I'll try to kee
 * public_key - Your public key, I think I put this in and am not using it yet?
 * private_key - Your private key for connecting to the server. Should be added to your DigitalOcean page.
 * ssh_fingerprint - Your ssh_fingerprint. You can find this yourself or grab it from DigitalOcean when you add your SSH key.
+* image_id - The ID or slug for the Digital Ocean image you want to use. This is designed to work with `flatcar`.
 * num_workers - Number of k8s worker nodes
   * 3
 * hyperkube_version - Version of hyperkube, a collection of k8s executables, I'd like to find a way to pin this to latest stable

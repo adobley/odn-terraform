@@ -9,7 +9,7 @@ data "template_file" "worker_config" {
 }
 
 resource "digitalocean_droplet" "k8s_worker" {
-  image = "coreos-stable"
+  image = var.image_id
   count = var.num_workers
   name = "${var.prefix}${format("-k8s-worker-%02d", count.index + 1)}"
   region = var.do_region
